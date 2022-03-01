@@ -74,21 +74,57 @@ var twoSum = function (nums, target) {
       if (nums[i] + nums[j] === target) {
         answer.push(i);
         answer.push(j);
+        break;
       }
     }
   }
   */
+
   /** optimal solution */
-  nums.sort((next, prev) => next - prev);
-  for (let i = 0; i < nums.length - 1; i++) {
-    console.log(nums[i]);
-    if (nums[i] + nums[i + 1] === target) {
+  // my fault : In hashTable, Each lookup in table costs Only O(1) time,
+  //            i confused that hashtable lookup costs O(N) time like for-loop.
+  //            so, i thought there's no reason to use hash table (key:value) because of same O(N) time like for-loop
+  // time complexity : 1. O(2n) -> 2. O(n + 1) -> O(n)
+  // space complexity : 1.2. O(n)
+
+  /*2. step2
+  let hashMap = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    //nums's each element's value => key, num's element's index => value
+    hashMap.set(nums[i], i);
+  } //time : O(N) space : O(N)
+  console.log(hashMap);
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i];
+    if (hashMap.has(complement) && hashMap.get(complement) !== i) {
+      console.log("complement : ", complement);
+      //condition : avoiding duplicate number for index calculation
       answer.push(i);
-      answer.push(i + 1);
+      answer.push(hashMap.get(complement));
+      // "i" must be first, and then complement, cause must be Ascending.
       break;
+      // break!
+      // if not, nevertheless answer found, for-loop keep going, so answer must be duplicate.
+      // Ex)  6 - 2 = 4, and also 6 - 4 = 2
+    }
+  } //time : O(N)
+  */
+
+  /* 3. step3 */
+  let hashMap = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i];
+    // console.log(`i : ${i}, hashMap.get(complement): ${hashMap.get(complement)}`);
+    // console.log(hashMap);
+    if (hashMap.has(complement)) {
+      answer.push(hashMap.get(complement));
+      answer.push(i);
+      break;
+    } else {
+      hashMap.set(nums[i], i);
     }
   }
-
   return answer;
 };
 
