@@ -76,11 +76,11 @@ bTree.prototype.postOrder = function (treeRoot) {
     //재귀
     console.log(`left -> this.postOrder(${treeRoot.left?.data})`);
     this.postOrder(treeRoot.left);
-    console.log(`postOrderResult.push(${treeRoot.data})`);
-    postOrderResult.push(treeRoot.data);
     //재귀
     console.log(`right -> this.postOrder(${treeRoot.right?.data})`);
     this.postOrder(treeRoot.right);
+    console.log(`postOrderResult.push(${treeRoot.data})`);
+    postOrderResult.push(treeRoot.data);
   }
 };
 
@@ -94,7 +94,6 @@ const main = function () {
   const n2 = tree.makeTree(n4, "*", n5);
   const n1 = tree.makeTree(n2, "-", n3);
 
-  
   // console.log("전위 순회"); // D->L->R
   // tree.preOrder(n1);
   // console.log(preOrderResult.join(" "));
@@ -103,7 +102,9 @@ const main = function () {
   // tree.inOrder(n1);
   // console.log(inOrderResult.join(" "));
 
-
+  console.log("후위 순회"); // L->R->D
+  tree.postOrder(n1);
+  console.log(postOrderResult.join(" "));
 };
 
 main();
