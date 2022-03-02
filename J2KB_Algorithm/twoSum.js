@@ -112,7 +112,6 @@ var twoSum = function (nums, target) {
 
   /* 3. step3 */
   let hashMap = new Map();
-
   for (let i = 0; i < nums.length; i++) {
     let complement = target - nums[i];
     // console.log(`i : ${i}, hashMap.get(complement): ${hashMap.get(complement)}`);
