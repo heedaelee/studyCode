@@ -39,7 +39,7 @@ Constraints:
 words[i] consists of lowercase English letters.
 */
 
-/* step 1.
+/* NOTE: step 1.
   input : words : string []
   output : number
   constraints : 
@@ -65,7 +65,7 @@ words[i] consists of lowercase English letters.
 let words = ["gin", "zen", "gig", "msg"];
 // let words = ["a"];
 
-//brute force
+//NOTE: brute force
 
 // var uniqueMorseRepresentations = function (words) {
 //   let answer = 0;
@@ -118,10 +118,11 @@ let words = ["gin", "zen", "gig", "msg"];
 //   return answer;
 // };
 
-//optimal solution (1)
+//NOTE: optimal solution (1)
 
  var uniqueMorseRepresentations = function(words) {
   const morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+  //FIXME: 1. 알파벳을 배열로 할필요 없이 긴 string으로 두고, indexOf(문자) 를 활용해 알파벳에 따른 index를 추출해 올 수 있다
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
   const trans = [];
   
@@ -133,11 +134,12 @@ let words = ["gin", "zen", "gig", "msg"];
           for(let j = 0; j < words[i].length; j++) {
               const morseIndex = alphabets.indexOf(words[i][j]);
               morseCode += morse[morseIndex];
-          }
-          trans.push(morseCode);
+            }
+            trans.push(morseCode);
+            console.log(trans)
       }
   }
-  
+  //FIXME: 2. 새로운 해쉬맵을 새로 만들 필요 없이, trans란 배열에 push해서 중복값 넣고, new Set(trans)를 통해 중복을 제거 해 줄수 있다. 
   return new Set(trans).size;
 };
 
