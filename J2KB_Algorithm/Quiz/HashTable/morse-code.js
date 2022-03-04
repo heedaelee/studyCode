@@ -53,7 +53,7 @@ words[i] consists of lowercase English letters.
 
     for loop =>make hashtable =>  each word -> mos letter :string -> put hashTable -> if duplicate , then count answer
   time complexcity : O(M + N^2) -> O(N^2)
-  space complexcity : O(M + N) -> O(M)
+  space complexcity : O(2M + N) -> O(M)
 */
 
 /**
@@ -133,6 +133,7 @@ let words = ["gin", "zen", "gig", "msg"];
           let morseCode = "";
           for(let j = 0; j < words[i].length; j++) {
               const morseIndex = alphabets.indexOf(words[i][j]);
+              //FIXME:1-2 다른 방법: const morseIndex = words[i][j].charCodeAt(0) - 97 // 97은 ASCII로 a임
               morseCode += morse[morseIndex];
             }
             trans.push(morseCode);

@@ -3,7 +3,8 @@
   ## Structure
 - DataStructure
   - BinanrySearchTree.js
-
+- J2KB_Algorithm
+  - Quiz
 
 
 ## history
