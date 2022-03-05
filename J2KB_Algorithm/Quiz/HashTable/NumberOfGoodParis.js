@@ -93,7 +93,7 @@ psuedo code
 make double for loop -> first for loop index :i, second :j = i+1 
 so always i<j
 and then, if(nums[i] === nums[j]) answer++;
-*/
+*/ 
 
 var numIdenticalPairs = function (nums) {
   let answer = 0;
