@@ -31,6 +31,8 @@ m == grid.length
 n == grid[i].length
 1 <= m, n <= 300
 grid[i][j] is '0' or '1'.
+
+time : O(n^2)
 */
 
 /**
@@ -81,7 +83,7 @@ function dfs(grid, x, y) {
     // console.log(`x = ${x}`);
     // console.log(`y = ${y}`);
     // console.log(typeof x);
-    // dfs(grid, x, y);
+    // dfs(grid, x, y); 
 
     // 수정 후 정상 코드
     console.log();
