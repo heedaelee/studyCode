@@ -1,5 +1,6 @@
 /**
  * 출 : https://ant-programmer.tistory.com/45
+ * 동빈나 소스
  */
 
 let check = []; // 방문점을 체크하기 위한 배열
