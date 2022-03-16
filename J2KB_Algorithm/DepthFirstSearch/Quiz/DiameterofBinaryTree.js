@@ -36,7 +36,7 @@ let diameterOfBinaryTree = function (root) {
   function dfs(node) {
     if (!node) return 0;
 
-    const left = dfs(node.left); 
+    const left = dfs(node.left);
     const right = dfs(node.right);
 
     //update diameter : 결국 이 문제, 총길이는 이 diameter를 node 마다 계속 값을 update 하면
