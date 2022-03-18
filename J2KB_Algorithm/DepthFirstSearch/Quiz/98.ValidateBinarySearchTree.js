@@ -12,9 +12,9 @@
  */
 
 class Node {
-  val;
-  left;
-  right;
+  // val;
+  // left;
+  // right;
   constructor(val, left, right) {
     this.val = val;
     this.left = left ? left : null;
@@ -58,7 +58,7 @@ const root = new Node(
   new Node(6, new Node(3, null, null), new Node(7, null, null))
 );
 
-console.log(root);
+// console.log(root.left);
 
 function isValidBST(root) {
   if (!root) {
@@ -68,12 +68,15 @@ function isValidBST(root) {
   return dfsForValidBST(root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 }
 
+/**핵심 포인트 : 트리에서 좌측으로 내려가면 최대값이 변하고, 우측으로 내려가면 최소값이 변한다.  */
 function dfsForValidBST(node, min, max) {
   // base case for recursion. return false if current node does not adhere to min and max
   if (node.val <= min || node.val >= max) {
     return false;
   }
 
+  //left 자식 노드가 있다면, dfs(node.left)로 자식노드를 넣어주고, 
+  //트리에서 왼쪽으로 내려 가면 최대값이 변해야 하므로, 현 node.val을 max param에 넣어줘 최대값을 부모노드 값으로 변화시킨다.    
   if (node.left) {
     const isLeftValidBST = dfsForValidBST(node.left, min, node.val);
     if (!isLeftValidBST) {
@@ -81,6 +84,8 @@ function dfsForValidBST(node, min, max) {
     }
   }
 
+  //right 자식 노드가 있다면, dfs(node.right)로 자식노드를 넣어주고, 
+  //트리에서 오른쪽으로 내려 가면 최소값이 변해야 하므로, 현 node.val을 min param에 넣어줘 최소값을 부모노드 값으로 변화시킨다.
   if (node.right) {
     const isRightValidBST = dfsForValidBST(node.right, node.val, max);
     if (!isRightValidBST) {
@@ -93,36 +98,3 @@ function dfsForValidBST(node, min, max) {
 
 console.log(isValidBST(root));
 
-/** 
-var isValidBST = function (root) {
-  let answer = true;
-  let rootVal = root.val;
-  let max = root.val;
-  let min = root.val;
-
-  dsf(root);
-
-  function dsf(node) {
-    if (!node || !answer) return;
-
-    if (node.left?.val >= max || node.right?.val <= min) {
-      answer = false;
-      return answer;
-    }
-
-    if (node.val < rootVal) {
-      max = rootVal;
-    } else {
-      max = node.val;
-    }
-    dsf(node.left);
-    if (node.val > rootVal) {
-      min = rootVal;
-    } else {
-      min = node.val;
-    }
-    dsf(node.right);
-  }
-  return answer;
-};
-*/
