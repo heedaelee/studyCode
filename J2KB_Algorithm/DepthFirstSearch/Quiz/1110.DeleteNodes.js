@@ -17,34 +17,45 @@ const to_delete = [3, 5];
 // console.log(root);
 
 var delNodes = function (root, to_delete) {
-  let array = [];
-  let modifedRootNode = dsf(root);
-  array.unshift(modifedRootNode);
 
-  return array;
 
-  function dsf(node) {
-    if (!node) return;
-    for (let i = 0; i < to_delete.length; i++) {
-      if (node.val === to_delete[i]) {
-        node.val = null;
-      }
-    }
-    if (node.val === null && (node.left || node.right)) {
-      if (node.left) {
-        array.push(node.left);
-        delete node.left;
-      }
-      if (node.right) {
-        array.push(node.right);
-        delete node.right;
-      }
-    }
-    dsf(node.left);
-    dsf(node.right);
-
-    return node;
-  }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const delNodes = (root, to_delete) => {
+//   const set = new Set(to_delete);
+//   const res = [];
+
+//   const go = (node) => {
+//     if (node == null) return node;
+//     node.left = go(node.left);
+//     node.right = go(node.right);
+
+//     if (set.has(node.val)) {
+//       if (node.left) res.push(node.left);
+//       if (node.right) res.push(node.right);
+//       return null;
+//     }
+//     return node;
+//   };
+
+//   if (!set.has(root.val)) res.push(root);
+//   go(root);
+//   return res;
+// };
+
+// console.log(delNodes(root, to_delete));
 console.log(delNodes(root, to_delete));
