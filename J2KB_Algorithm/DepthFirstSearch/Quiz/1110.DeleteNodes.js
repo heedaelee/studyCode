@@ -14,21 +14,33 @@ const root = new Node(
 
 const to_delete = [3, 5];
 
-// console.log(root);
-
 var delNodes = function (root, to_delete) {
+  const set = new Set(to_delete);
+  let list = [];
+  // console.log(set);
 
+  function dsf(node) {
+    if (!node) return node;
 
+    //dsf 탐색
+    node.left = dsf(node.left);
+    node.right = dsf(node.right);
+
+    //중복값 없이 탐색할때 set.has 주로 사용;
+    if (set.has(node.val)) {
+      if (node.left) list.push(node.left);
+      if (node.right) list.push(node.right);
+      //return null 이 중요
+      return null;
+    }
+    //return node 도 중요
+    return node;
+  }
+
+  if (!set.has(root.val)) list.push(root);
+  dsf(root);
+  return list;
 };
-
-
-
-
-
-
-
-
-
 
 
 
