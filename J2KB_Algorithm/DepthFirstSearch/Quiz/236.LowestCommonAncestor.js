@@ -31,26 +31,18 @@ const root = new Node(
   ),
   new Node(1, new Node(0, null, null), new Node(8, null, null))
 );
-let p = 5,
-  q = 1;
 
-//key : value 구조로 노드의 값을 key, 노드의 레벨을 value
+ 
+  console.log(root);
+
+//key : value 구조로 노드의 값을 vale, 노드의 레벨을 key
 //그런데 그게 p에서 q까지 거리에 값 중에. p나 q를 만나면 start, q나 p를 만나면 stop
-var lowestCommonAncestor = function (root, p, q) {
-  let depts = 0;
-  let set = new Set([p, q]);
-  dfs(root, 0);
+function lowestCommonAncestor(node, p, q) {
+  if (!node || node === p || node === q) return node;
+  let resL = lowestCommonAncestor(node.left, p, q);
+  let resR = lowestCommonAncestor(node.right, p, q);
+  //L,R 자식 중 둘다 있으면  자신 리턴, 둘다 없으면 있는 자식 부분 node 리턴
+  return (resL && resR) ? node : (resL || resR);
+}
 
-  function dfs(node) {
-    if (!node) return null;
-    depts = depts + 1;
-    console.log(node.val, depts);
-
-    dfs(node.left);
-    dfs(node.right);
-    
-    return -1;
-  }
-};
-
-lowestCommonAncestor(root, p, q);
+console.log(lowestCommonAncestor(root, p, q));
