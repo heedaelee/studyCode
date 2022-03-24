@@ -32,11 +32,7 @@ const root = new Node(
   new Node(1, new Node(0, null, null), new Node(8, null, null))
 );
 
- 
-  console.log(root);
-
-//key : value 구조로 노드의 값을 vale, 노드의 레벨을 key
-//그런데 그게 p에서 q까지 거리에 값 중에. p나 q를 만나면 start, q나 p를 만나면 stop
+console.log(root);
 function lowestCommonAncestor(node, p, q) {
   if (!node || node === p || node === q) return node;
   let resL = lowestCommonAncestor(node.left, p, q);
