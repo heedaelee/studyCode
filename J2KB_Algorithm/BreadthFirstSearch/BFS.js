@@ -20,6 +20,7 @@ const solution = (list, target) => {
   if (!list.length) return [];
 
   const adjacencyList = topologicalSort(list);
+  console.log(adjacencyList);
   return BFS(adjacencyList, target);
 };
 
@@ -38,6 +39,7 @@ const topologicalSort = (list) => {
   for (let i = 0; i < list.length; i++) {
     const [from, to] = list[i];
 
+    //from으로 할수 있는것 -> map에 공항 있으면 dest 채우기 && 없으면 dest 채워진 걸로 새로 만들기
     if (map[from]) {
       map[from].dest.push(to);
     } else {
@@ -46,7 +48,7 @@ const topologicalSort = (list) => {
         dest: [to],
       };
     }
-
+    //to로 할수 있는것 -> map에 공항 있으면 incoming +1 && 없으면 incoming :1 dest :[]으로 새로 하나 만들기
     if (map[to]) {
       map[to].incoming++;
     } else {
@@ -71,7 +73,6 @@ const BFS = (graph, target) => {
   // const queue = [[source, initialDepth]];
   const queue = [[source, path]];
   // while and queue
-
   while (queue.length) {
     const [key, currentPath] = queue.shift();
     //a방식
