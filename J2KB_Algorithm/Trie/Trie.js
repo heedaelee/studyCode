@@ -67,7 +67,7 @@ const searchDFS = (target) => {
 };
 
 const DFSAlg = (curRoot, result) => {
-  console.log(curRoot);
+  // console.log(curRoot);
   for (let [key, val] of Object.entries(curRoot)) {
     if (key === "*") {
       result.push(val);
