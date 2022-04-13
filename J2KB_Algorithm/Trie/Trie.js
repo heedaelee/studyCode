@@ -67,6 +67,7 @@ const searchDFS = (target) => {
 };
 
 const DFSAlg = (curRoot, result) => {
+  console.log(curRoot);
   for (let [key, val] of Object.entries(curRoot)) {
     if (key === "*") {
       result.push(val);
@@ -100,6 +101,8 @@ targetElement.addEventListener("input", (e) => {
     resultElement.innerHTML = "";
     const val = e.target.value;
     const result = searchDFS(val);
+    // console.log(val);
+    // console.log('result : ', result);
     resultElement.innerHTML = result.join(", ");
   }
 });
