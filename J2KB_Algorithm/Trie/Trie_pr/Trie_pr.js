@@ -11,6 +11,7 @@ function solution(list) {
 function searchDFS(target) {
   let result = [];
 
+  //요게 핵심임!! 변수에 레퍼런스 전달 주는거. 그래야 객체 내부에 포인터 위치를 원하는대로 옮길수 있으니 
   let root = Trie;
 
   // 입력 target 이후의 객체를 dfs로 삽입
