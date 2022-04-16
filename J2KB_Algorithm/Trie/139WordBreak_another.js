@@ -44,6 +44,8 @@ var wordBreak = function (s, wordDict) {
   //build Trie
   wordDict.forEach((word) => trie.insertWord(word, trie));
 
+  //주어진 string 처리함수, 
+  //if string given all exists in Trie build, return true. if not, return false
   const handleString = (str, trie) => {
     if (!str.length) {
       return (result = true);
@@ -58,8 +60,11 @@ var wordBreak = function (s, wordDict) {
       if (!current || !current.keys[letter] || result) {
         return;
       } else if (current.keys[letter].isWord && !result) {
+        //주어진 1개 letter가 단어의 끝이고 && 끝이 나지 않았을때(->result===false)
         handleString(str.slice(i + 1), trie);
+        //파라미터 slice 는 주어진 문자열 인덱스 + 1 부터 slice해서 handleString() 진행하라는 뜻임.
       }
+      //끝이 나지 않았고, 주어진 letter가 단어의 끝도 아닐때 -> 현재 단어의 주소값을 current 변수에 할당
       current = current.keys[letter];
     }
   };
