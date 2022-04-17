@@ -18,7 +18,7 @@ var wordBreak = function (s, wordDict) {
   buildTrie(wordDict);
   // console.log(JSON.stringify(Trie));
   let answer = searchInTrie(s);
-
+  console.log('answer : ', answer)
   return answer;
 };
 
