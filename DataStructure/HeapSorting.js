@@ -1,6 +1,12 @@
 /**
  * 출 : https://www.youtube.com/watch?v=iyl9bfp_8ag
  * 이 코드는 (오름차순) 힙 정렬을 구현하는 코드이다.
+ *
+ * 핵심 :
+ * root룰 child에 할당하는건, (c =root)
+ * (트리에서) 위로 올라가는거고
+ * child를 root에 할당하는건, (root = c)
+ * 밑으로 내려가는 것이다.
  *  */
 
 const number = 9;
@@ -15,23 +21,20 @@ function main() {
     //do-while : 부모가 있다면 자식 값과 부모값을 비교하는 로직
     do {
       //NOTE: 2진트리에서,
-      //현재 포인트(c)의 root(부모) 구하는 방법 root = (c -1)/2 이면 루트 idx를 구할 수 있다.
+      //child(c)의 root(부모) 구하는 방법 root = (c -1)/2 이면 루트 idx를 구할 수 있다.
       let root = Math.floor((c - 1) / 2);
-      console.log(`현재 인덱스가 ${c} 일때, root 인덱스는 ${root}`);
-      //현재노드가 루트노드보다 더 크다면
+      //자식노드가 루트노드보다 더 크다면
       if (heap[root] < heap[c]) {
         // swap
         let temp = heap[root];
         heap[root] = heap[c];
         heap[c] = temp;
-        console.log(`root 인덱스${root} 와, 현재 인덱스${c} 값 스왑`);
       }
       //NOTE: c= root는 올라가는 방법임. cild 인덱스가 -> root 인덱스값을 할당받았으니 논리적으로 트리에서 올라가는 뜻
       //(swap을 하든 안하든)swap단계를 지냈으니 아들(c->child뜻인가보당)에서 루트 인덱스로 올라가야함. 할당을 통해
       c = root;
       //root가 0이면 child 0이되고, 그 뜻은 더이상 root(부모)가 없다는 뜻이므로 do-while 탈출해야함
     } while (c !== 0);
-    console.log(heap);
   }
 
   //2. 크기를 줄여가며(=올림차순이니 최대값부터 배열에 들어가니 힙 크기는 1개씩 줄어든다는 의미)
