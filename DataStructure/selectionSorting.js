@@ -20,14 +20,16 @@ function selectionSort() {
     let min = 0;
     let minIdx = 0;
 
+    min = 9999;
     //최소값 찾기
     for (let j = i; j < number; j++) {
       //첫번째는 최소값 인덱스랑 값 변수에 무조건 할당
-      if (i === j) {
-        min = array[j];
-        minIdx = j;
-        continue;
-      }
+      //NOTE:이렇게 안해도 최소값을 큰수로  min = 9999 넣어줘도 되겠다.
+      // if (i === j) {
+      //   min = array[j];
+      //   minIdx = j;
+      //   continue;
+      // }
 
       //두번째부턴 적으면 할당
       if (array[j] < min) {
