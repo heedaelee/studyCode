@@ -17,51 +17,54 @@
 
 const number = 10;
 const array = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9];
-let pivotP = 0,
-  leftP = 0;
-let rightP = array.length - 1;
 
-function quickSorting(pivotP, leftP, rightP) {
-  
-  if (rightP < 0 || leftP < 0 || pivotP < 0) return;
-  //피벗보다 큰 값 찾기, leftP, (leftP == 큰값 이다!)
-  for (let i = leftP; i <= rightP; i++) {
-    leftP = i;
-    if (array[pivotP] < array[leftP]) {
-      break;
+let counter = 0;
+
+function quickSorting(data, start, end) {
+  // if (end <= 0 || number <= start) return;
+  counter++;
+  if (end <= start) {
+    console.log(`start : ${start}, end : ${end}`);
+    return;
+  }
+
+  let i = start + 1;
+  let j = end;
+  let pivot = start;
+
+  //i<j 뜻은 i j 순서가 안바뀜. 즉 아직 정렬할게 남아 있다는 뜻
+  while (i < j) {
+    while (i < number - 1 && data[i] <= data[pivot]) {
+      i++;
+    }
+
+    while (pivot < j && data[pivot] <= data[j]) {
+      j--;
+    }
+
+    // 큰수가(i) 작은수(j) 보다 왼쪽에 있을때
+    if (i < j) {
+      const tmp = data[i];
+      data[i] = data[j];
+      data[j] = tmp;
     }
   }
+  // 큰수가(i) 작은수(j) 보다 오른쪽에 있을때,
+  // 정렬이 다 되었으니 작은수 인덱스랑 pivot 인덱스랑 스왚
+  const tmp = data[j];
+  data[j] = data[pivot];
+  data[pivot] = tmp;
+  //swap후, 작은수 j의 왼쪽,
+  //swap 후에 왼쪽 블록을 만들때,  swap전 pivot 인덱스가 start 인덱스로 되어야 한다.
+  quickSorting(data, pivot, j - 1);
+  //j의 오른쪽
+  //swap 후에 오른쪽 블록을 만들때, swap전 j인덱스랑 pivot이랑 스왑을 했으니
+  // j+1인덱스가 start 인덱스로, end인덱스는 전체 배열의 마지막 인덱스가 아닌, 이전의 end인덱스가 끝이 되어야 한다.
+  // quickSorting(data, j + 1, number - 1); //영역 틀린 코드
+  quickSorting(data, j + 1, end);
 
-  //피벗보다 작은 값 찾기, rightP, (rightP == 작은값 이다!, 헷갈림 주의)
-  for (let i = rightP; pivotP <= i; i--) {
-    rightP = i;
-    if (array[rightP] <= array[pivotP]) {
-      break;
-    }
-  }
-
-  //큰값 포인터가 작은값 포인터보다 작으면 (=> leftP < rightP ), 작은 값이 뒤에 있다는 뜻이므로 작은값 큰 값 Swap,
-  //피벗이 바뀌면 안되지. 그니까 pivot 값 고정하고 재귀돌리고..
-  if (leftP < rightP) {
-    const temp = array[leftP];
-    array[leftP] = array[rightP];
-    array[rightP] = temp;
-    //반복, 재귀로, pivot값은 똑같이..
-    //NOTE: 여기서 다시
-    quickSorting(pivotP);
-  } else {
-    //큰값 포인터가 작은값 포인터보다 크면 정렬 완료된 것이므로, 피벗과 작은값을 swap한다
-    //
-    const temp = array[rightP];
-    array[rightP] = array[pivotP];
-    array[pivotP] = temp;
-    //swap 한 right 인덱스 값의 왼쪽 블록
-    quickSorting(pivotP, pivotP, rightP - 1);
-    //swap 한 right 인덱스 값의 오른쪽 블록
-    quickSorting(leftP, leftP, array.length - 1);
-  }
-
-  return array;
+  return data;
 }
 
-console.log(quickSorting(pivotP, leftP, rightP));
+console.log(quickSorting(array, 0, number - 1));
+console.log(`함수 호출 횟수 : ${counter}`);
