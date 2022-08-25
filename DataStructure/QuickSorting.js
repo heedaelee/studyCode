@@ -21,10 +21,12 @@ const array = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9];
 let counter = 0;
 
 function quickSorting(data, start, end) {
+  // NOTE:miss point
   // if (end <= 0 || number <= start) return;
   counter++;
+  // NOTE: constraint condition 중요!
   if (end <= start) {
-    console.log(`start : ${start}, end : ${end}`);
+    console.log(`start : ${start}, end : ${end}, pivot : ${start}`);
     return;
   }
 
@@ -34,15 +36,24 @@ function quickSorting(data, start, end) {
 
   //i<j 뜻은 i j 순서가 안바뀜. 즉 아직 정렬할게 남아 있다는 뜻
   while (i < j) {
+    //잘못됨 : i < number -1이 되면 안되고 -> i <= end 가 되야함.
+    //반복된 재귀로 start랑 end범위는 고정이 아니라 계속 변하니 number값으로 기준이 되면 안되고,
+    // start, end 기준으로 범위를 설정해야 하는데, number 값으로 정하는 miss 가 일어남
     while (i < number - 1 && data[i] <= data[pivot]) {
       i++;
     }
 
+    //이건 잘했네. (pivot < )pivot 기준 이라서 결국 pivot=start이니
+    //start 기준으로 제약건걸로 되어서 j--값은 에러가 안나타남
     while (pivot < j && data[pivot] <= data[j]) {
       j--;
     }
 
     // 큰수가(i) 작은수(j) 보다 왼쪽에 있을때
+    // 큰수가 작은수 왼쪽에 있는 이 경우 제외하고 모든 경우는 다 정렬이 되었다고 간주함
+    // 이 경우를 제외하면 #63행 swap 로직 처럼,
+    // 결국 pivot 값과 오른쪽부터 탐색한 pivot보다 작은 값과 swap, (또는 pivot값만 있을 경우 자기자신swap)
+    // 을 하면서 왼쪽 part와 오른쪽 part로 분할(divide)하게 됨.
     if (i < j) {
       const tmp = data[i];
       data[i] = data[j];
