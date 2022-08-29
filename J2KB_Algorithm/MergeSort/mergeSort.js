@@ -3,7 +3,7 @@
  *  요소가 2개 이하가 될 때 까지 배열을 재귀적으로 나누고, 분할된 배열을 재귀적으로 정렬한다.
  *  mergeSort : O(log N) => 재귀니까.
  */
-function mergeSort(arr:Array) {
+function mergeSort(arr) {
   if (arr.length === 1) {
     return arr;
   }
@@ -22,7 +22,7 @@ function merge(arr1, arr2) {
   let result = [];
 
   // 투포인터 방법 :  i , j, i,j인덱스 계산후 새로운 array에 push
-  //left right 2개 배열 아직 인덱스가 덜 돌았으면(#27행), 두 배열 요소별 크기를 비교하여(#24행), 
+  //left right 2개 배열 아직 인덱스가 덜 돌았으면(#27행), 두 배열 요소별 크기를 비교하여(#24행),
   //작은 수부터 push를 하여 넣는다 -> while문, 오름차순 정렬됨
   while (i < arr1.length && j < arr2.length) {
     if (arr1[i] < arr2[j]) {
