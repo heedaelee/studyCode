@@ -78,6 +78,8 @@ const BFS = (graph, target) => {
   const queue = [[source, path]];
   // while and queue
   while (queue.length) {
+    console.log("큐 start : ");
+    console.log(queue);
     const [key, currentPath] = queue.shift();
 
     //a방식
@@ -99,6 +101,7 @@ const BFS = (graph, target) => {
       // const plusOneDepth = currentDepth + 1;
       // queue.push([child, plusOneDepth]);
     }
+    console.log("큐 end : ");
     console.log(queue);
   }
 
