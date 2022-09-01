@@ -12,6 +12,16 @@ const Node = function (data) {
   this.right = null;
 };
 
+/**
+ * Node 형태
+ * {
+ *    data:string,
+ *    left:Node,
+ *    right:Node
+ * }
+ *
+ */
+
 /** 루트 초기화 */
 const bTree = function () {
   this.root = null;
@@ -30,7 +40,8 @@ bTree.prototype.preOrder = function (treeRoot) {
   /** 테스트 로그 시작 */
   console.log("cnt : ", ++cnt);
   console.log(treeRoot);
-  if (treeRoot === null) console.log("treeRoot가 Null임 -> 데이터 없다!");
+  if (treeRoot === null)
+    console.log("treeRoot가 Null임 -> 데이터 없다!");
   /** 테스트 로그  끝*/
 
   if (treeRoot != null) {
@@ -48,7 +59,8 @@ bTree.prototype.inOrder = function (treeRoot) {
   console.log();
   console.log("cnt : ", ++cnt);
   console.log(treeRoot);
-  if (treeRoot === null) console.log("treeRoot가 Null임 -> 데이터 없다!");
+  if (treeRoot === null)
+    console.log("treeRoot가 Null임 -> 데이터 없다!");
   /** 테스트 로그  끝*/
 
   if (treeRoot != null) {
@@ -69,7 +81,8 @@ bTree.prototype.postOrder = function (treeRoot) {
   console.log();
   console.log("cnt : ", ++cnt);
   console.log(treeRoot);
-  if (treeRoot === null) console.log("treeRoot가 Null임 -> 데이터 없다!");
+  if (treeRoot === null)
+    console.log("treeRoot가 Null임 -> 데이터 없다!");
   /** 테스트 로그  끝*/
 
   if (treeRoot != null) {
