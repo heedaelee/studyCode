@@ -18,12 +18,9 @@
 const number = 10;
 const array = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9];
 
-let counter = 0;
-
 function quickSorting(data, start, end) {
   // NOTE:miss point
   // if (end <= 0 || number <= start) return;
-  counter++;
   // NOTE: constraint condition 중요!
   if (end <= start) {
     console.log(`start : ${start}, end : ${end}, pivot : ${start}`);
@@ -78,4 +75,3 @@ function quickSorting(data, start, end) {
 }
 
 console.log(quickSorting(array, 0, number - 1));
-console.log(`함수 호출 횟수 : ${counter}`);
