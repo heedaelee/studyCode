@@ -71,18 +71,6 @@ function dfs(grid, x, y) {
   grid[y][x] = "0";
 
   for (let i = 0; i < finder.length; i++) {
-    /*문제 코드*/
-    // console.log();
-    // console.log(`finder  x : ${x + finder[i][1]} = ${x} + ${finder[i][1]} `);
-    // console.log(`finder  y : ${y + finder[i][0]} = ${y} + ${finder[i][0]} `);
-    // x += finder[i][1];
-    // y += finder[i][0];
-    // console.log(`x = ${x}`);
-    // console.log(`y = ${y}`);
-    // console.log(typeof x);
-    // dfs(grid, x, y);
-
-    // 수정 후 정상 코드
     let newX = x + finder[i][1];
     let newY = y + finder[i][0];
     dfs(grid, newX, newY);
