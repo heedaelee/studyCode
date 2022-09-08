@@ -31,29 +31,24 @@ let nums = [-1, -100, 3, 99];
 let k = 3;
 
 var rotate = function (nums, k) {
-  let answerNums = [];
-  let reverseNums = [];
   let len = nums.length;
 
-  // console.log(k);
+  k = k % len;
 
-  if (len <= 1) return nums;
-  let lastIdx = len - 1;
+  nums.reverse();
 
-  if (k >= len) k = k % len;
+  reverseArr(0, k - 1);
+  reverseArr(k + 1, len - 1);
 
-  while (0 < k) {
-    reverseNums.unshift(nums[lastIdx]);
-    nums.pop();
-    lastIdx--;
-    k--;
+  function reverseArr(start, end) {
+    while (start < end) {
+      [nums[end], nums[start]] = [nums[start], nums[end]];
+      start++;
+      end--;
+    }
   }
-  answerNums = [...reverseNums, ...nums];
-  // console.log(reverseNums);
-  // console.log(nums);
-  // console.log(answerNums);
-  // console.log(answerNums);
-  return answerNums;
 };
 
-console.log(rotate(nums,k));
+rotate(nums, k);
+
+console.log(nums);
