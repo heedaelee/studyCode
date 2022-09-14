@@ -80,8 +80,8 @@ function dfsSolution(maps) {
 
   const xRange = maps[0].length;
   const yRange = maps.length;
-  console.log(xRange);
-  console.log(yRange);
+  // console.log(xRange);
+  // console.log(yRange);
   function dfs(y, x) {
     for (let i = 0; i < 4; i++) {
       const ny = y + dy[i];
@@ -94,7 +94,7 @@ function dfsSolution(maps) {
         ny < yRange &&
         maps[ny][nx] === 1
       ) {
-        console.log(ny, nx);
+        // console.log(ny, nx);
         if (nx === xRange - 1 && ny === yRange - 1) {
           ++counter;
           router.push(counter);
