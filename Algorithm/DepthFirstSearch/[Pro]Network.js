@@ -3,6 +3,8 @@
 n	computers	return
 3	[[1, 1, 0], [1, 1, 0], [0, 0, 1]]	2
 3	[[1, 1, 0], [1, 1, 1], [0, 1, 1]]	1
+
+point : checked 를 만든다 : boolean으로
 */
 
 const computers = [
@@ -44,3 +46,37 @@ function solution(n, computers) {
     }
   }
 }
+
+/** failcode
+ * 
+ * function solution(n, computers) {
+    var answer = 0;
+    let counter = 0;
+    let routers = [];
+    
+    
+    for(let i = 0; i<computers.length; i++){
+        dfs(i)
+    }
+    
+    function dfs (idx) {
+        
+        if(idx+1 >= computers.length) {
+            ++counter;
+            return;
+        }
+        
+        for(let i = idx+1; idx < computers.length; idx++){
+            if(computers[idx][i] === 1){
+            computers[idx][i] = 0;
+            dfs(i);
+            }
+            ++counter;
+                       
+        }
+            
+    }
+    
+    return answer;
+}
+ */
