@@ -85,11 +85,14 @@ const buildTrie = (list) => {
     let currentRoot = trie;
     for (let c = 0; c < currentWord.length; c++) {
       const curChar = currentWord[c];
+      // 특정 문자가 없으면 {}를 만들어주고, 현재 head객체에 만든 {}를 할당, 그러면 깊게 갈수 있지
+      // 있으면, 바로 head 객체에 할당. 깊게감
       if (!currentRoot[curChar]) {
         currentRoot[curChar] = {};
       }
       currentRoot = currentRoot[curChar];
     }
+    //문자가 끝날때 sign
     currentRoot["*"] = currentWord;
   }
 };
